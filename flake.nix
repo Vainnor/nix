@@ -16,20 +16,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # dotfiles = {
-    #  url = "github:vainnor/dots";
-    # flake = false;
-    #}
-
-    # Custom neovim configuration (non-flake repository)
-    neovim = {
-      url = "github:amulabeg/neovim";
-      flake = false;
-    };
   };
 
   # Main configuration output
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, neovim, }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
   let
     # Base system configuration
     configuration = { pkgs, ... }: {
