@@ -89,6 +89,8 @@
     poetry
     vscodium
 
+    # GUI
+    code-cursor
 
     # Cool stuff
   ];
