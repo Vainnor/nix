@@ -20,22 +20,6 @@
         "type": "github"
       }
     },
-    "neovim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1733271893,
-        "narHash": "sha256-DuFEL1oUjuShA+R0GZ22teMVRijvmp7l0YFuO0DcQQw=",
-        "owner": "amulabeg",
-        "repo": "neovim",
-        "rev": "38514fdb79a1d50856576f982833b0c5db233288",
-        "type": "github"
-      },
-      "original": {
-        "owner": "amulabeg",
-        "repo": "neovim",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -75,7 +59,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "neovim": "neovim",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs"
       }
