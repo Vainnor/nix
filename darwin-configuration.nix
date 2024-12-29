@@ -24,7 +24,7 @@
     git
     zsh
     fd
-    neofetch
+    fastfetch
     fzf
     zoxide
     tmux
