@@ -5,8 +5,8 @@
   config,
   ...
 }: {
-  systemPackages = with pkgs; [
-    mkalias
+  environment.systemPackages =  [
+    pkgs.mkalias
   ];
 
 system.activationScripts.applications.text = let
