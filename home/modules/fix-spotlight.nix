@@ -2,6 +2,7 @@
   pkgs,
   outputs,
   userConfig,
+  config,
   ...
 }: {
   environment.systemPackages = with pkgs; [
