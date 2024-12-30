@@ -2,9 +2,6 @@
   # Zsh shell configuration
   programs.zsh = {
     enable = true;
-    interactiveShellInit = ''
-      eval "$(zoxide init zsh)"
-    '';
     enableCompletion = true;
     shellAliases = {
       ff = "fastfetch";
@@ -68,6 +65,8 @@
     initExtra = ''
       # kubectl auto-complete
       source <(kubectl completion zsh)
+
+      eval "$(zoxide init zsh)"
 
       # open commands in $EDITOR with C-e
       autoload -z edit-command-line
