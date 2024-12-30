@@ -47,8 +47,8 @@
     # Define user configurations
     users = {
       vainnor = {
-        email = "me@carsonberget.com";
-        fullName = "Carson Berget";
+        email = "crafty_chick.0u@icloud.com";
+        fullName = "Vainnor";
         gitKey = "D6EEDC73DF4D80C8";
         name = "vainnor";
       };

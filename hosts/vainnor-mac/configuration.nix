@@ -94,7 +94,7 @@
         persistent-apps = [
           "/Applications/Arc.app"
           "/Applications/Ghostty.app"
-          "/Applications/Discord.app"
+          "${pkgs.discord}/Discord.app"
           "/Applications/Cursor.app"
         ];
         tilesize = 30;
@@ -140,6 +140,7 @@
     zoxide
 
     jetbrains.idea-ultimate
+    discord
   ];
   # Zsh configuration
   programs.zsh.enable = true;
