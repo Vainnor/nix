@@ -8,7 +8,7 @@
       cd = "z";
       moo = "cowsay I use macOS btw";
       rb = "";
-      drb = "darwin-rebuild switch --flake ~/nix#mbp";
+      drb = "darwin-rebuild switch --flake ~/nix#vainnor-mac";
       
 
       # git
