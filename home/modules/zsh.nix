@@ -5,7 +5,7 @@
     enableCompletion = true;
     shellAliases = {
       ff = "fastfetch";
-      
+      cd = "z";
       moo = "cowsay I use macOS btw";
       rb = "";
       drb = "darwin-rebuild switch --flake ~/nix#vainnor-mac";
