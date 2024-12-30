@@ -2,6 +2,7 @@
   imports = [
     ../modules/common.nix
     ../modules/ghostty.nix
+    ../modules/fix-spotlight.nix
   ];
 
   # Enable home-manager
