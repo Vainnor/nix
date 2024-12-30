@@ -1,75 +1,114 @@
-# Main configuration file for nix-darwin setup on macOS
 {
-  description = "Vainnor's flake";
-
-  # Dependencies and external sources needed for this configuration
+  description = "NixOS and nix-darwin configs for my machines";
   inputs = {
-    # Main Nix package repository, using unstable channel
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    
-    # nix-darwin for macOS system configuration
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    # Ensure nix-darwin uses the same nixpkgs as defined above
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    
-    # Home Manager for user environment management
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # Nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
+    # Home manager
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # NixOS profiles to optimize settings for different hardware
+    hardware.url = "github:nixos/nixos-hardware";
+
+    # Global catppuccin theme
+    catppuccin.url = "github:catppuccin/nix";
+
+    # NixOS Spicetify
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Nix Darwin (for MacOS machines)
+    darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Homebrew
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
-  # Main configuration output
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
-  let
-    # Base system configuration
-    configuration = { pkgs, ... }: {
-      # Allow proprietary software
-      nixpkgs.config.allowUnfree = true;
+  outputs = {
+    self,
+    catppuccin,
+    darwin,
+    home-manager,
+    nix-homebrew,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
 
-      imports = [ 
-        ./darwin-configuration.nix
-        ./system-defaults.nix
-        ];
+    # Define user configurations
+    users = {
+      nabokikh = {
+        avatar = ./files/avatar/face;
+        email = "alexander.nabokikh@olx.pl";
+        fullName = "Alexander Nabokikh";
+        gitKey = "C5810093";
+        name = "nabokikh";
+      };
+    };
 
-      users.users.vainnor = {
-          name = "vainnor";
-          home = "/Users/vainnor";
+    # Function for NixOS system configuration
+    mkNixosConfiguration = hostname: username:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs hostname;
+          userConfig = users.${username};
         };
+        modules = [./hosts/${hostname}/configuration.nix];
+      };
 
-      services.nix-daemon.enable = true;
-      programs.zsh.enable = true; # default shell on catalina
-
-      # Enable flakes and nix-command features
-      nix.settings.experimental-features = "nix-command flakes";
-
-      # Track configuration version for potential future migrations
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-      system.stateVersion = 5;
-
-      # Specify this is for Apple Silicon Mac
-      nixpkgs.hostPlatform = "aarch64-darwin";
-    };
-  in
-  {
-    # Main system configuration for MacBook Pro
-   
-    darwinConfigurations."mbp" = nix-darwin.lib.darwinSystem {
-      modules = [
-          # Apply base system configuration
-          configuration
-          # Enable home-manager integration
+    # Function for nix-darwin system configuration
+    mkDarwinConfiguration = hostname: username:
+      darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = {
+          inherit inputs outputs hostname;
+          userConfig = users.${username};
+        };
+        modules = [
+          ./hosts/${hostname}/configuration.nix
           home-manager.darwinModules.home-manager
-          {
-            # Home Manager configuration
-            home-manager.useGlobalPkgs = true;    # Use system-level packages
-            home-manager.useUserPackages = true;  # Enable user package management
-            home-manager.users.vainnor = import ./home.nix;  # User-specific config
-            # Pass flake inputs to home-manager
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-            };
-          }
+          nix-homebrew.darwinModules.nix-homebrew
         ];
+      };
+
+    # Function for Home Manager configuration
+    mkHomeConfiguration = system: username: hostname:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {inherit system;};
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          userConfig = users.${username};
+        };
+        modules = [
+          ./home/${username}/${hostname}.nix
+          catppuccin.homeManagerModules.catppuccin
+        ];
+      };
+  in {
+    nixosConfigurations = {
+      energy = mkNixosConfiguration "energy" "nabokikh";
+      nabokikh-z13 = mkNixosConfiguration "nabokikh-z13" "nabokikh";
     };
+
+    darwinConfigurations = {
+      "nabokikh-mac" = mkDarwinConfiguration "nabokikh-mac" "nabokikh";
+    };
+
+    homeConfigurations = {
+      "nabokikh@energy" = mkHomeConfiguration "x86_64-linux" "nabokikh" "energy";
+      "nabokikh@nabokikh-mac" = mkHomeConfiguration "aarch64-darwin" "nabokikh" "nabokikh-mac";
+      "nabokikh@nabokikh-z13" = mkHomeConfiguration "x86_64-linux" "nabokikh" "nabokikh-z13";
+    };
+
+    overlays = import ./overlays {inherit inputs;};
   };
 }
