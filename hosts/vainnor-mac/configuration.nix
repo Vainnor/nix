@@ -57,11 +57,14 @@
         NSAutomaticCapitalizationEnabled = false;
         NSAutomaticDashSubstitutionEnabled = false;
         NSAutomaticQuoteSubstitutionEnabled = false;
-        NSAutomaticSpellingCorrectionEnabled = false;
         NSAutomaticWindowAnimationsEnabled = false;
         NSDocumentSaveNewDocumentsToCloud = false;
         NSNavPanelExpandedStateForSaveMode = true;
         PMPrintingExpandedStateForPrint = true;
+      };
+      WindowManager = {
+        StandardHideDesktopIcons = true;
+        EnableStandardClickToShowDesktop = true;
       };
       LaunchServices = {
         LSQuarantine = false;
@@ -89,9 +92,10 @@
         show-recents = false;
         showhidden = true;
         persistent-apps = [
-          "/Applications/Brave Browser.app"
-          "${pkgs.alacritty}/Applications/Alacritty.app"
-          "${pkgs.telegram-desktop}/Applications/Telegram.app"
+          "/Applications/Arc.app"
+          "/Applications/Ghostty.app"
+          "/Applications/Discord.app"
+          "/Applications/Cursor.app"
         ];
         tilesize = 30;
         wvous-bl-corner = 1;
@@ -104,17 +108,6 @@
         type = "png";
         disable-shadow = true;
       };
-    };
-    keyboard = {
-      enableKeyMapping = true;
-      # swapLeftCtrlAndFn = true;
-      # Remap §± to ~
-      userKeyMapping = [
-        {
-          HIDKeyboardModifierMappingDst = 30064771125;
-          HIDKeyboardModifierMappingSrc = 30064771172;
-        }
-      ];
     };
   };
 
@@ -135,9 +128,16 @@
     openconnect
     pipenv
     ripgrep
-    telegram-desktop
     terraform
     terragrunt
+
+    # Vainnors
+    rustc
+    cargo
+    nodejs
+    python3
+    cmake
+    zoxide
   ];
 
   # Zsh configuration
@@ -152,16 +152,25 @@
 
   homebrew = {
     enable = true;
+    brews = [
+      "yq"
+      "swift"
+      "ca-certificates"
+      "terminal-notifier"
+    ]
     casks = [
-      "aerospace"
-      "anki"
-      "brave-browser"
-      "dozer"
-      "obs"
+     "hiddenbar"
+      "obsidian"
+      "ghostty"
+      "wireshark"
+      "betterdisplay"
+      "shottr"
+      "font-sf-pro"
+      "font-jetbrains-mono"
       "raycast"
     ];
     taps = [
-      "nikitabobko/tap"
+      
     ];
     onActivation.cleanup = "zap";
   };

@@ -46,12 +46,11 @@
 
     # Define user configurations
     users = {
-      nabokikh = {
-        avatar = ./files/avatar/face;
-        email = "alexander.nabokikh@olx.pl";
-        fullName = "Alexander Nabokikh";
-        gitKey = "C5810093";
-        name = "nabokikh";
+      vainnor = {
+        email = "me@carsonberget.com";
+        fullName = "Carson Berget";
+        gitKey = "D6EEDC73DF4D80C8";
+        name = "vainnor";
       };
     };
 
@@ -95,18 +94,16 @@
       };
   in {
     nixosConfigurations = {
-      energy = mkNixosConfiguration "energy" "nabokikh";
-      nabokikh-z13 = mkNixosConfiguration "nabokikh-z13" "nabokikh";
+      nabokikh-z13 = mkNixosConfiguration "vainnor-desktop" "vainnor";
     };
 
     darwinConfigurations = {
-      "nabokikh-mac" = mkDarwinConfiguration "nabokikh-mac" "nabokikh";
+      "vainnor-mac" = mkDarwinConfiguration "vainnor-mac" "vainnor";
     };
 
     homeConfigurations = {
-      "nabokikh@energy" = mkHomeConfiguration "x86_64-linux" "nabokikh" "energy";
-      "nabokikh@nabokikh-mac" = mkHomeConfiguration "aarch64-darwin" "nabokikh" "nabokikh-mac";
-      "nabokikh@nabokikh-z13" = mkHomeConfiguration "x86_64-linux" "nabokikh" "nabokikh-z13";
+      "vainnor@vainnor-desktop" = mkHomeConfiguration "x86_64-linux" "vainnor" "vainnor-desktop";
+      "vainnor@vainnor-mac" = mkHomeConfiguration "aarch64-darwin" "vainnor" "vainnor-mac"; 
     };
 
     overlays = import ./overlays {inherit inputs;};
