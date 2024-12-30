@@ -66,14 +66,6 @@
       # kubectl auto-complete
       source <(kubectl completion zsh)
 
-      # bindings
-      bindkey -v
-      bindkey '^A' beginning-of-line
-      bindkey '^E' end-of-line
-      bindkey '^H' backward-delete-word
-      bindkey '^[[1;5C' forward-word
-      bindkey '^[[1;5D' backward-word
-
       # open commands in $EDITOR with C-e
       autoload -z edit-command-line
       zle -N edit-command-line

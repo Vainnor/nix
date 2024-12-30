@@ -73,5 +73,5 @@
   };
 
   # Enable catppuccin theming for alacritty.
-  catppuccin.alacritty.enable = true;
+  gruvbox-dark.alacritty.enable = true;
 }
