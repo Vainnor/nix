@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ../modules/common.nix
+    ../modules/ghostty.nix
   ];
 
   # Enable home-manager
