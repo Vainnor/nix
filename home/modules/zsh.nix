@@ -9,7 +9,7 @@
       moo = "cowsay I use macOS btw";
       rb = "";
       drb = "darwin-rebuild switch --flake ~/nix#mbp";
-      ipaddress = 'ifconfig | grep -A 5 en0 | grep "inet " | cut -f2 -d " "';
+      
 
       # git
       gaa = "git add --all";
