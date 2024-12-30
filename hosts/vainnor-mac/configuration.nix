@@ -26,7 +26,6 @@
   # Nix settings
   nix.settings = {
     experimental-features = "nix-command flakes";
-    auto-optimise-store = true;
   };
 
   nix.package = pkgs.nix;
@@ -157,7 +156,7 @@
       "swift"
       "ca-certificates"
       "terminal-notifier"
-    ]
+    ];
     casks = [
      "hiddenbar"
       "obsidian"
