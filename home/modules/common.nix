@@ -1,6 +1,5 @@
 {outputs, ...}: {
   imports = [
-    ../modules/alacritty.nix
     ../modules/atuin.nix
     ../modules/bat.nix
     ../modules/btop.nix
@@ -17,7 +16,6 @@
     ../modules/scripts.nix
     ../modules/starship.nix
     ../modules/tmux.nix
-    ../modules/zsh.nix
     
   ];
 

@@ -158,7 +158,7 @@
       "terminal-notifier"
     ];
     casks = [
-     "hiddenbar"
+      "hiddenbar"
       "obsidian"
       "ghostty"
       "wireshark"
