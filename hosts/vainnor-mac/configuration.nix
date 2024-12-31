@@ -49,6 +49,9 @@
       ".GlobalPreferences" = {
         "com.apple.mouse.scaling" = -1.0;
       };
+      controlcenter = {
+        BatteryShowPercentage = true;
+      };
       NSGlobalDomain = {
         AppleInterfaceStyle = "Dark";
         ApplePressAndHoldEnabled = false;
@@ -102,6 +105,7 @@
         wvous-br-corner = 1;
         wvous-tl-corner = 1;
         wvous-tr-corner = 1;
+        minimize-to-application = true;
       };
       screencapture = {
         location = "/Users/${userConfig.name}/Downloads/temp";
