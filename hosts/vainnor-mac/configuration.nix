@@ -88,6 +88,7 @@
         ShowStatusBar = true;
         _FXShowPosixPathInTitle = true;
         _FXSortFoldersFirst = true;
+        NewWindowTarget = "Documents";
       };
       dock = {
         autohide = true;
