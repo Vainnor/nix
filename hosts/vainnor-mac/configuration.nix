@@ -143,7 +143,10 @@
     discord
   ];
   # Zsh configuration
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+  };
 
   # Fonts configuration
   fonts.packages = with pkgs; [
@@ -159,6 +162,7 @@
       "swift"
       "ca-certificates"
       "terminal-notifier"
+      "zsh-autosuggestions"
     ];
     casks = [
       "hiddenbar"
