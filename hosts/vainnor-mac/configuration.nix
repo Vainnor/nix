@@ -94,7 +94,7 @@
         persistent-apps = [
           "/Applications/Arc.app"
           "/Applications/Ghostty.app"
-          "${pkgs.discord}/Discord.app"
+          "${pkgs.discord}/Applications/Discord.app"
           "/Applications/Cursor.app"
         ];
         tilesize = 30;
