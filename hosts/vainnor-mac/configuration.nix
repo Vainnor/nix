@@ -162,7 +162,6 @@
       "swift"
       "ca-certificates"
       "terminal-notifier"
-      "zsh-autosuggestions"
     ];
     casks = [
       "hiddenbar"
