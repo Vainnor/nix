@@ -184,6 +184,7 @@
       "font-sf-pro"
       "font-jetbrains-mono"
       "raycast"
+      "postgres-unofficial"
     ];
     taps = [
       
