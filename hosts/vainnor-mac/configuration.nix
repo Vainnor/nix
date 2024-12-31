@@ -52,6 +52,12 @@
       controlcenter = {
         BatteryShowPercentage = true;
       };
+      loginwindow = {
+        GuestEnabled = false;
+      };
+      menuExtraClock = {
+        Show24Hour = true;
+      };
       NSGlobalDomain = {
         AppleInterfaceStyle = "Dark";
         ApplePressAndHoldEnabled = false;
@@ -64,6 +70,7 @@
         NSDocumentSaveNewDocumentsToCloud = false;
         NSNavPanelExpandedStateForSaveMode = true;
         PMPrintingExpandedStateForPrint = true;
+        AppleICUForce24HourTime = true;
       };
       WindowManager = {
         StandardHideDesktopIcons = true;
