@@ -149,6 +149,7 @@
     python3
     cmake
     zoxide
+    nodejs_23
 
     jetbrains.idea-ultimate
     discord
