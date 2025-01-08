@@ -43,6 +43,7 @@
   # Add ability to use TouchID for sudo
   security.pam.enableSudoTouchIdAuth = true;
 
+  power.sleep.computer = 20;
   # System settings
   system = {
     defaults = {
@@ -153,6 +154,8 @@
 
     jetbrains.idea-ultimate
     discord
+    appflowy
+    godot_4
   ];
   # Zsh configuration
   programs.zsh = {
