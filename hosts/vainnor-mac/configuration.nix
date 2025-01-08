@@ -155,7 +155,6 @@
     jetbrains.idea-ultimate
     discord
     appflowy
-    godot_4
   ];
   # Zsh configuration
   programs.zsh = {
